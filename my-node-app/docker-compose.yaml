@@ -11,6 +11,8 @@ services:
       - .:/my-simple-app/app
     depends_on:
       - database
+    networks:
+      - network
   
   database: 
     container_name: my-node-app_database-service
@@ -23,3 +25,9 @@ services:
       - 3306:3306
     volumes:
       - ./database/data:/var/lib/mysql
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
